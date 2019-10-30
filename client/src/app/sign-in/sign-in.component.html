@@ -1,0 +1,21 @@
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body" [formGroup]="signInfo">
+            <h5 class="card-title text-center">Sign In</h5>
+              <div class="form-label-group">
+                <input type="email" formControlName="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus><br>
+              </div>
+
+              <div class="form-label-group">
+                <input type="password" formControlName="password" id="inputPassword" class="form-control" placeholder="Password" required>
+              </div><br>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" (click)="signin()">Sign in</button>
+              <hr class="my-4">
+              <span>Don't have an account? </span>
+              <a [routerLink]="['/signup']">Sign up</a>
+              <hr class="my-4">
+          </div>
+        </div>
+      </div>
+    </div>

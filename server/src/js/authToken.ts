@@ -4,8 +4,10 @@ import passport from 'passport'
 import dotEnv from 'dotenv'
 dotEnv.config()
 
+const SECRET_KEY: string = process.env.SECRET_KEY + '';
+
 const create = function (req: express.Request, res: express.Response) {
-    passport.authenticate('jwt', {session: false}, (err, user) => {
+    passport.authenticate('local', {session: false}, (err, user) => {
         if (err || !user) {
             console.log(err)
             return res.status(400).json({
@@ -17,9 +19,9 @@ const create = function (req: express.Request, res: express.Response) {
             if (err) {
                 res.send(err);
             }
-            // jwt.sign('token내용', 'JWT secretkey')
-            const token = jwt.sign(user.toJSON(), 'gitple');
-            return res.json({user});
+            // jwt.sign('token', 'JWT secretkey')
+            const token = jwt.sign(user.toJSON(), SECRET_KEY);
+            return res.json({token});
         });
     })(req, res);
 };
