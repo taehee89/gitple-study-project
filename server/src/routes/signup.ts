@@ -1,7 +1,7 @@
-import {modelNm, userSchema} from '../js/db'
+import {userModelNm, userSchema} from '../js/db'
 const restful = require('node-restful')
 
-const signup = restful.model(modelNm, userSchema)
+const signup = restful.model(userModelNm, userSchema)
   .methods(['post'])
 
 export default signup

@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <div class="card card-signin my-5">
+      <div class="card-body" [formGroup]="content">
+        <h5 class="card-title text-center">Content</h5>
+        <div class="small-10 columns">
+          <label style="color:black;"> Subject*</label>
+          <input class="span12" type="text" formControlName="subject" name='subject' id="subject" placeholder="Enter your email subject" data-toggle="tooltip" title="Input Message Subject between 10 to 80" data-validation-required-message="Please enter subject"  required>
+        </div>
+        <textarea class="form-control span12" formControlName="content" name="content" id="content" rows="10" cols="100" placeholder="Enter your email content" data-validation-required-message="Please enter your message" minlength="5"
+              data-validation-minlength-message="Min 5 characters" data-toggle="tooltip" title="Input Message Content between 50 to 500" required></textarea>
+        <hr class="my-4">
+        <button *ngIf="!docId" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" (click)="add()">Add</button>
+        <button *ngIf="docId" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" (click)="update()">Update</button>
+        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

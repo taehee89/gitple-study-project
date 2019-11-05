@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent {
+export class SignInComponent implements OnInit{
   constructor(
     private http: HttpClient,
     private router: Router
@@ -44,7 +44,7 @@ export class SignInComponent {
         localStorage.setItem('userInfo', JSON.stringify(val));
         console.log('POST call successful');
         alert('Sign In complete!! Go to the profile page.');
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/list']);
       }
       , response => {
         console.log('POST call in error', response);
@@ -52,6 +52,12 @@ export class SignInComponent {
       });
     } else {
       alert('The all field is required');
+    }
+  }
+
+  ngOnInit() {
+    if (localStorage.getItem('userInfo') != null) {
+      this.router.navigate(['/list']);
     }
   }
 }

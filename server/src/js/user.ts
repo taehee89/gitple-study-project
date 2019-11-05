@@ -4,6 +4,8 @@ import passport from 'passport'
 import dotEnv from 'dotenv'
 dotEnv.config()
 
+const SECRET_KEY: string = process.env.SECRET_KEY + '';
+
 const create = function (req: express.Request, res: express.Response) {
     passport.authenticate('jwt', {session: false}, (err, user) => {
         if (err || !user) {
@@ -18,7 +20,7 @@ const create = function (req: express.Request, res: express.Response) {
                 res.send(err);
             }
             // jwt.sign('token내용', 'JWT secretkey')
-            const token = jwt.sign(user.toJSON(), 'gitple');
+            const token = jwt.sign(user.toJSON(), SECRET_KEY);
             return res.json({user});
         });
     })(req, res);

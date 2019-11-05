@@ -2,7 +2,7 @@ import passport from 'passport';
 import passportJwt from 'passport-jwt';
 import passpostLocal from 'passport-local';
 import mongoose from 'mongoose'
-import {modelNm, userSchema} from '../js/db'
+import {userModelNm, userSchema} from '../js/db'
 import dotEnv from 'dotenv'
 dotEnv.config()
 
@@ -10,7 +10,7 @@ const LocalStrategy = passpostLocal.Strategy;
 const JWTStrategy = passportJwt.Strategy;
 const ExtractJWT = passportJwt.ExtractJwt;
 
-const db = mongoose.model(modelNm, userSchema);
+const db = mongoose.model(userModelNm, userSchema);
 
 const passportCfg = () => {
     passport.use(new LocalStrategy({

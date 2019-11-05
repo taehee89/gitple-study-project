@@ -1,10 +1,18 @@
 import mongoose from 'mongoose'
 
-const modelNm = 'user_list'
+const userModelNm = 'user_list'
+const contentsModelNm = 'content_list'
+
 const userSchema = new mongoose.Schema({
   email: String,
   name: String,
   password: String
 })
 
-export {modelNm, userSchema}
+const contentsSchema = new mongoose.Schema({
+  user_id: String,
+  subject: String,
+  content: String
+})
+
+export {userModelNm, contentsModelNm, userSchema, contentsSchema}

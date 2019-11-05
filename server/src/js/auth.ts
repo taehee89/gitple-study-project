@@ -1,16 +1,16 @@
 import express from 'express'
+import passport from 'passport';
 import jwt from 'jsonwebtoken'
-import passport from 'passport'
 import dotEnv from 'dotenv'
 dotEnv.config()
 
 const SECRET_KEY: string = process.env.SECRET_KEY + '';
 
-const signin = function (req: express.Request, res: express.Response) {
-    return passport.authenticate('local', {session: false}, (err, user) => {
+const auth = function (req: express.Request, res: express.Response, next: express.NextFunction) {
+    passport.authenticate('jwt', {session: false}, (err, user) => {
         if (err || !user) {
             return res.status(400).json({
-                message: 'Something is not right',
+                message: 'Something is not right!!!',
                 user   : user
             });
         }
@@ -18,11 +18,11 @@ const signin = function (req: express.Request, res: express.Response) {
             if (err) {
                 res.send(err);
             }
-            // jwt.sign('token', 'JWT secretkey')
-            const token = jwt.sign(user.toJSON(), SECRET_KEY);
-            return res.json({token});
+            // jwt.sign('token내용', 'JWT secretkey')
+            req.body.user_id = user._id
+            next()
         });
-    })(req, res);
+    })(req, res, next);
 };
 
-export default signin
+export default auth;
