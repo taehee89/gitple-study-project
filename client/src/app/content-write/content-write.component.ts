@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router, ActivatedRoute} from '@angular/router';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-content-write',
@@ -26,23 +27,26 @@ export class ContentWriteComponent implements OnInit {
   });
 
   add() {
-    const contentData = JSON.stringify(this.content.value);
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization' : 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).token
-    });
-    const options = {headers: headers};
+    if (!_.isEmpty(this.content.value.subject)) {
+      const contentData = JSON.stringify(this.content.value);
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization' : 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).token
+      });
+      const options = {headers: headers};
 
-    this.http
-    .post('http://localhost:3000/content', contentData, options)
-    .subscribe( (val) => {
-      console.log('POST call successful value returned in body', val);
-      alert('write complete!! Go to the list page.');
-      this.router.navigate(['/list']);
+      this.http
+      .post('http://localhost:3000/content', contentData, options)
+      .subscribe( (val) => {
+        alert('write complete!! Go to the list page.');
+        this.router.navigate(['/list']);
+      }
+      , response => {
+        console.log('POST call in error', response);
+      });
+    } else {
+      alert('The subject field is required');
     }
-    , response => {
-      console.log('POST call in error', response);
-    });
   }
 
   update() {
@@ -56,7 +60,6 @@ export class ContentWriteComponent implements OnInit {
     this.http
     .put('http://localhost:3000/content/' + this.docId, contentData, options)
     .subscribe( (val) => {
-      console.log('POST call successful value returned in body', val);
       alert('update complete!! Go to the list page.');
       this.router.navigate(['/list']);
     }
@@ -78,7 +81,6 @@ export class ContentWriteComponent implements OnInit {
     this.http
     .get('http://localhost:3000/content/' + this.docId, options)
     .subscribe( (val: any) => {
-      console.log('POST call successful ' + val);
       this.content.setValue({
         subject: val.subject,
         content: val.content

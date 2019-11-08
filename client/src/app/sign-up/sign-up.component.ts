@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-sign',
@@ -21,21 +22,9 @@ export class SignUpComponent implements OnInit {
     password: new FormControl('')
   });
 
-  formCheck() {
-    if (this.user.value.name === null || this.user.value.name === undefined || this.user.value.name === '') {
-      return false;
-    }else if (this.user.value.email === null || this.user.value.email === undefined || this.user.value.email === '') {
-        return false;
-    }else if (this.user.value.password === null || this.user.value.password === undefined || this.user.value.password === '') {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
   // sign up funtion, method: post
   signup() {
-    if (this.formCheck()) {
+    if (!_.isEmpty(this.user.value.name) && !_.isEmpty(this.user.value.email) && !_.isEmpty(this.user.value.password)) {
       const userData = JSON.stringify(this.user.value);
       const headers = new HttpHeaders({'Content-Type': 'application/json'});
       const options = {headers: headers};
@@ -43,7 +32,6 @@ export class SignUpComponent implements OnInit {
       this.http
       .post('http://localhost:3000/signup', userData, options)
       .subscribe( (val) => {
-        console.log('POST call successful value returned in body', val);
         alert('Sign up complete!! Go to the login page.');
         this.router.navigate(['/']);
       }

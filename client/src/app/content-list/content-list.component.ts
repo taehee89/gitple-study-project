@@ -20,6 +20,11 @@ export class ContentListComponent implements OnInit {
     content: new FormControl('')
   })];
 
+  keyword = [new FormGroup( {
+    word: new FormControl(''),
+    count: new FormControl()
+  })];
+
   add() {
     this.router.navigate(['/write']);
   }
@@ -36,7 +41,6 @@ export class ContentListComponent implements OnInit {
     this.http
     .delete('http://localhost:3000/content/' + docId, options)
     .subscribe( (val: Array<Object>) => {
-      console.log('POST call successful value returned in body', val);
       alert('delete complete!!');
       this.getList();
     }
@@ -59,8 +63,24 @@ export class ContentListComponent implements OnInit {
       this.http
       .get('http://localhost:3000/content', options)
       .subscribe( (val: any) => {
-        console.log('POST call successful ' + val);
         this.content = val;
+      }
+      , response => {
+        console.log('POST call in error', response);
+        this.signout();
+      });
+  }
+
+  getKeyword() {
+    const headers = new HttpHeaders({
+      'Authorization' : 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).token
+    });
+    const options = {headers: headers};
+
+      this.http
+      .get('http://localhost:3000/keyword', options)
+      .subscribe( (val: any) => {
+        this.keyword = val;
       }
       , response => {
         console.log('POST call in error', response);
@@ -71,6 +91,7 @@ export class ContentListComponent implements OnInit {
   ngOnInit() {
     if (localStorage.getItem('userInfo') != null) {
       this.getList();
+      this.getKeyword();
     } else {
       this.router.navigate(['/']);
     }

@@ -1,10 +1,10 @@
 import passport from 'passport';
 import passportJwt from 'passport-jwt';
 import passpostLocal from 'passport-local';
-import mongoose from 'mongoose'
-import {userModelNm, userSchema} from '../js/db'
-import dotEnv from 'dotenv'
-dotEnv.config()
+import mongoose from 'mongoose';
+import {userModelNm, userSchema} from '../js/db';
+import dotEnv from 'dotenv';
+dotEnv.config();
 
 const LocalStrategy = passpostLocal.Strategy;
 const JWTStrategy = passportJwt.Strategy;
@@ -28,7 +28,6 @@ const passportCfg = () => {
         catch (err) {
             return done(err);
         }
-
     }
     ));
 

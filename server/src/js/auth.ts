@@ -1,12 +1,7 @@
-import express from 'express'
+import { Request, Response, NextFunction } from 'express';
 import passport from 'passport';
-import jwt from 'jsonwebtoken'
-import dotEnv from 'dotenv'
-dotEnv.config()
 
-const SECRET_KEY: string = process.env.SECRET_KEY + '';
-
-const auth = function (req: express.Request, res: express.Response, next: express.NextFunction) {
+const auth = function (req: Request, res: Response, next: NextFunction) {
     passport.authenticate('jwt', {session: false}, (err, user) => {
         if (err || !user) {
             return res.status(400).json({
@@ -19,8 +14,8 @@ const auth = function (req: express.Request, res: express.Response, next: expres
                 res.send(err);
             }
             // jwt.sign('token내용', 'JWT secretkey')
-            req.body.user_id = user._id
-            next()
+            req.body.user_id = user._id;
+            next();
         });
     })(req, res, next);
 };

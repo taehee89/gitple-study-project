@@ -18,6 +18,20 @@
         <hr class="my-4">
         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" (click)="add()">Write</button>
         <hr class="my-4">
+        <h5 class="card-title text-center">Keywords</h5>
+        <table class="table">
+         <thead>
+           <tr>
+              <th scope="col">word</th>
+              <th scope="col">count</th>
+            </tr>
+          </thead>
+          <tr *ngFor="let item of keyword">
+            <td>{{item.word}}</td>
+            <td>{{item.count}}</td>
+          </tr>
+        </table>
+        <hr class="my-4">
         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" (click)="signout()">Sign out</button>
       </div>
     </div>

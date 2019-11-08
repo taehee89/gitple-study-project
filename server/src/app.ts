@@ -9,9 +9,10 @@ dotEnv.config();
 
 import passportCfg from './js/passport';
 import signup from './routes/signup';
-import write from './routes/contents';
+import contents from './routes/contents';
 import signin from './js/authToken';
 import auth from './js/auth';
+const keywords = require('./routes/keyword');
 
 const app = express();
 
@@ -38,14 +39,16 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => console.log('Successfully connected to mongodb'))
   .catch(e => console.error(e));
 
-passportCfg();
+passportCfg();  // passport environment setting
 
 signup.register(app, '/signup') // sign up
 app.post('/signin', signin); // sign in
 
-app.use(auth);
+app.use(auth); // jwt auth middleware
 
-write.register(app, '/content'); // write contents
+contents.register(app, '/content'); // contents CRUD
+app.use('/keyword', keywords); // sign in
+//keywords.register(app, '/keyword'); // keyword
 
 // listen server
 app.listen(process.env.SERVER_PORT, () => {

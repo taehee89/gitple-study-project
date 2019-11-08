@@ -1,12 +1,12 @@
-import express from 'express'
-import jwt from 'jsonwebtoken'
-import passport from 'passport'
-import dotEnv from 'dotenv'
-dotEnv.config()
+import { Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
+import passport from 'passport';
+import dotEnv from 'dotenv';
+dotEnv.config();
 
 const SECRET_KEY: string = process.env.SECRET_KEY + '';
 
-const signin = function (req: express.Request, res: express.Response) {
+const signin = function (req: Request, res: Response) {
     return passport.authenticate('local', {session: false}, (err, user) => {
         if (err || !user) {
             return res.status(400).json({
@@ -25,4 +25,4 @@ const signin = function (req: express.Request, res: express.Response) {
     })(req, res);
 };
 
-export default signin
+export default signin;
