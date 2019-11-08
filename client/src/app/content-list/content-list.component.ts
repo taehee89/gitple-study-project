@@ -43,6 +43,7 @@ export class ContentListComponent implements OnInit {
     .subscribe( (val: Array<Object>) => {
       alert('delete complete!!');
       this.getList();
+      this.getKeyword();
     }
     , response => {
       console.log('POST call in error', response);
