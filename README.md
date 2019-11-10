@@ -17,6 +17,12 @@
    - lodash
 
 ## Project structure
+```bash
+───gitple-study-project/
+   ├── client/
+   ├── server/
+   └── README.md
+```
  - clietn
  - server
  - README
@@ -38,9 +44,7 @@
 ## Page flow
 - sign in -> content list
 - sign up -> sign in
-- sign out -> sign in
-- content list > write -> content write -> content list
-- content detail > update or delete -> content list
+- content list -> content write
 
 ## Install
 ```bash
