@@ -66,3 +66,21 @@
 - sign in -> content list
 - sign up -> sign in
 - content list -> content write
+
+## Install
+```bash
+# package install
+yarn
+```
+
+## Run
+```bash
+# client dev run
+yarn start
+```
+
+## Build
+```bash
+# build
+yarn build
+```

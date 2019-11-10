@@ -31,3 +31,24 @@
    ├── README.md
    └── tsconfig.json
 ```
+
+## Install
+```bash
+# package install
+yarn
+```
+
+## Run
+```bash
+# server dev run
+yarn dev
+
+# run server after build
+yarn start
+```
+
+## Build
+```bash
+# build
+yarn build
+```

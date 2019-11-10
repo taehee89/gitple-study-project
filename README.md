@@ -16,7 +16,7 @@
    - passport-jwt
    - lodash
 
-## Project structure
+## Project Structure
 ```bash
 ───gitple-study-project/
    ├── client/
@@ -41,7 +41,7 @@
    - content delete
    - keyword top5
 
-## Page flow
+## Page Flow
 - sign in -> content list
 - sign up -> sign in
 - content list -> content write
