@@ -8,7 +8,7 @@
    - Bootstrap 4
    - jQuery
 
-## Project structure
+## Project Structure
 ```bash
 ───client/
    ├── e2e/
@@ -62,7 +62,7 @@
    └── tslint.json
 ```
 
-## Page flow
+## Page Flow
 - sign in -> content list
 - sign up -> sign in
 - content list -> content write
