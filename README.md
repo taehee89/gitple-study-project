@@ -42,5 +42,20 @@
 - content list > write -> content write -> content list
 - content detail > update or delete -> content list
 
+## Install
+```bash
+# homebrew install
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+# node, npm install
+brew install node
+node -v
+npm -v
+
+# yarn install
+brew install yarn
+
+# typescript install
+yarn global add typescript
+```
 
