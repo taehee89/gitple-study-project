@@ -63,8 +63,8 @@
 ```
 
 ## Page Flow
-- sign in -> content list
 - sign up -> sign in
+- sign in -> content list
 - content list -> content write
 
 ## Install

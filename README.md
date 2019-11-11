@@ -23,14 +23,11 @@
    ├── server/
    └── README.md
 ```
- - clietn
- - server
- - README
 
 ## Function
  - sign
-   - sign in
    - sign up
+   - sign in
    - sign out
  - Authentication
  - contents
@@ -42,8 +39,8 @@
    - keyword top5
 
 ## Page Flow
-- sign in -> content list
 - sign up -> sign in
+- sign in -> content list
 - content list -> content write
 
 ## Install

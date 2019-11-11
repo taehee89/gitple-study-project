@@ -27,11 +27,9 @@ function textRank(contents: any) {
     wordArray.push(tmpArray);
   });
 
-  const deduplicationArray: string[] = [];
+  let deduplicationArray: string[] = [];
   _(wordArray).forEach((item) => {
-      _(_.unionBy(item)).forEach((n) => {
-        deduplicationArray.push(n)
-      })
+    deduplicationArray = deduplicationArray.concat(_.unionBy(item));
   })
 
   let result: any[] = []
@@ -42,7 +40,7 @@ function textRank(contents: any) {
       word: key,
       count : rankObj[key]
     }
-    result.push(tmpObj)
+    result.push(tmpObj);
   })
 
   result = _.orderBy(result, ['count'], ['desc']).filter((item, index) => item.word.length > 1 && index < 5);
