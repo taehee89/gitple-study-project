@@ -23,7 +23,7 @@
     "@types/passport-jwt": "^3.0.2",
     "@types/passport-local": "^1.0.33",
     "@types/redis": "^2.8.14",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "bcrypt-nodejs": "0.0.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
